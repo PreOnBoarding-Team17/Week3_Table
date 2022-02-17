@@ -38,7 +38,7 @@ const SelectModal: React.FC<CustomModalProps> = ({
     setCopySelected({ ...copySelected, [name]: checked });
   };
 
-  const handleSumit = () => {
+  const handleSubmit = () => {
     toggleFalse();
     localStorage.setItem('selected', JSON.stringify(copySelected));
     setSelected(copySelected);
@@ -70,7 +70,7 @@ const SelectModal: React.FC<CustomModalProps> = ({
             </FormGroup>
           </Box>
 
-          <Button variant="contained" size="large" onClick={handleSumit}>
+          <Button variant="contained" size="large" onClick={handleSubmit}>
             {MODALBTNTEXT}
           </Button>
         </Box>

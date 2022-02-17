@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from 'API';
 import { INITIAL_CATEGORY } from 'Utils/Constants/';
-import { SelectedInterface } from 'Utils/Interfaces';
+import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
 import SelectModal from 'Components/SelectModal';
 
 function App() {
-  const [selected, setSelected] = useState<SelectedInterface>(INITIAL_CATEGORY);
+  const localSelected = localStorage.getItem('selected');
+  const [selected, setSelected] = useState<SelectedInterface>(
+    localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
+  );
+  const [data, setData] = useState<DataInterface | null>(null);
 
   useEffect(() => {
-    const localData = localStorage.getItem('selected');
-
-    if (localData) setSelected(JSON.parse(localData));
-    else localStorage.setItem('selected', JSON.stringify(INITIAL_CATEGORY));
+    !localSelected &&
+      localStorage.setItem('selected', JSON.stringify(INITIAL_CATEGORY));
 
     fetchData().then((res) => {
-      console.log(res.data);
+      setData(res.data);
     });
   }, []);
 
