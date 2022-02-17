@@ -4,7 +4,7 @@ export const PRODUCTDATA = [
   '상품가격',
   '상품수량',
   '연관상품ID',
-]
+];
 
 export const ORDERDATA = [
   '주문서 양식',
@@ -18,7 +18,7 @@ export const ORDERDATA = [
   '수취인 연락처',
   '메모',
   '택배사명',
-]
+];
 
 export const RELEASEDATA = [
   '출고코드',
@@ -29,4 +29,4 @@ export const RELEASEDATA = [
   '출고 요청자',
   '출고 요청일자',
   '출고 창고명',
-]
+];

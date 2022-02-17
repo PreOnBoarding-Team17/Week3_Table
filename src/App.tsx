@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { fetchData } from 'API'
-import { Button } from '@mui/material'
+import React, { useEffect } from 'react';
+import { fetchData } from 'API';
+import { Button } from '@mui/material';
 
 function App() {
   useEffect(() => {
     fetchData().then((res) => {
-      console.log(res.data)
-    })
-  }, [])
+      console.log(res.data);
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -16,7 +16,7 @@ function App() {
         Text
       </Button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
