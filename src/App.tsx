@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { fetchData } from 'API';
-import { Button } from '@mui/material';
+import { Global } from '@emotion/react';
+import GlobalStyles from 'Utils/Styles/GlobalStyles';
 
 function App() {
   useEffect(() => {
@@ -11,10 +12,8 @@ function App() {
 
   return (
     <div className="App">
-      Hello
-      <Button variant="contained" color="primary">
-        Text
-      </Button>
+      <Global styles={GlobalStyles} />
+      ased
     </div>
   );
 }
