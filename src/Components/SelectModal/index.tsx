@@ -11,8 +11,9 @@ import {
 import styled from '@emotion/styled';
 import { SelectedInterface } from 'Utils/Interfaces';
 import useToggle from 'Utils/Hooks/UseToggle';
+import SubmitButton from 'Components/Common/SubmitButton';
 
-const MODALTITLE = '카테고리 선택해주세요.';
+const MODALTITLE = '카테고리를 선택해주세요.';
 const MODALBTNTEXT = '선택 완료';
 
 interface CustomModalProps {
@@ -70,10 +71,11 @@ const SelectModal: React.FC<CustomModalProps> = ({
               ))}
             </FormGroup>
           </ModalContent>
-
-          <Button variant="contained" size="large" onClick={handleSubmit}>
-            {MODALBTNTEXT}
-          </Button>
+          <SubmitButton
+            variant="contained"
+            text={MODALBTNTEXT}
+            onClick={handleSubmit}
+          />
         </ModalContainer>
       </Modal>
     </div>

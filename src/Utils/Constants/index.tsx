@@ -4,6 +4,7 @@ import {
   RowDataInterface,
   StringObjKey,
 } from 'Utils/Interfaces';
+import { FooterArrayInterface } from 'Utils/Interfaces';
 
 export const PRODUCT_CATEGORY = [
   '상품코드',
@@ -89,7 +90,7 @@ export const INITIAL_CATEGORY = {
   출고창고명: false,
 };
 
-export const ModalInfo = [
+export const MODAL_INFO = [
   ['text', '출고 전표 번호', '00DNLQCDO0120220117D0KE3'],
   ['text', '출고 요청일자', '2022-01-18'],
   ['text', '출고 요청업체', '콜로상사'],
@@ -131,6 +132,13 @@ const CategoryType: { [key: string]: number } = {
   출고요청일자: 12,
   출고창고명: 5,
 };
+
+export const FOOTER_INFO: FooterArrayInterface = [
+  { variant: 'contained', text: '출고주문서 다운로드' },
+  { variant: 'contained', text: '전체출고취소' },
+  { variant: 'contained', text: '매핑결과 최종 확인' },
+  { variant: 'outlined', text: '목록으로' },
+];
 
 const getWidth = (column: string | number) => {
   const size: number = CategoryType[column] * 10;

@@ -7,6 +7,7 @@ import { INITIAL_CATEGORY } from 'Utils/Constants/';
 import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
 import SelectModal from 'Components/SelectModal';
 import Table from 'Components/Table';
+import Footer from 'Components/Footer';
 
 function App() {
   const localSelected = localStorage.getItem('selected');
@@ -34,6 +35,7 @@ function App() {
         setSelected={setSelected}
       />
       <Table datas={data} />
+      <Footer />
     </div>
   );
 }
