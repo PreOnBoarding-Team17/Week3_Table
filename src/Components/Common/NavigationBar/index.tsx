@@ -1,61 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Box, AppBar, Chip, Button, Typography, Toolbar } from '@mui/material';
+import InformationModal from 'Components/Common/NavigationBar/InformationModal';
 
 const NavigationBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
     <AppBar position="static" sx={{ boxShadow: 'none' }}>
-      <Toolbar
-        sx={{ backgroundColor: 'white', borderBottom: '1px solid #dddddd' }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: 80,
-            justifyContent: 'center',
-          }}
-        >
+      <Navigation>
+        <TitleContainer>
           <Box>
-            <Chip
-              size="small"
-              sx={{
-                backgroundColor: '#7DD8FF',
-                color: 'white',
-              }}
-              label="출고 관리"
-            />
+            <SubTitle size="small" label="출고 관리" />
           </Box>
-          <Typography
-            variant="h5"
-            sx={{ color: '#3e3e3e', fontWeight: 'bold', marginTop: '4px' }}
-          >
-            출고 매핑 관리
-          </Typography>
-        </Box>
+          <Title variant="h5">출고 매핑 관리</Title>
+        </TitleContainer>
         <Box sx={{ flexGrow: 1 }} />
-        <Button
-          sx={{
-            border: '1px solid #777777',
-            color: '#3e3e3e',
-            boxShadow: '2px 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
-          VOC 관리
-        </Button>
-        <Button
-          sx={{
-            border: '1px solid #777777',
-            color: '#3e3e3e',
-            marginLeft: '10px',
-            boxShadow: '2px 2px 4px rgba(0,0,0,0.2)',
-          }}
-        >
+        <MenuButton>VOC 관리</MenuButton>
+        <MenuButton sx={{ marginLeft: '10px' }} onClick={handleClick}>
           출고 신청 정보
-        </Button>
-      </Toolbar>
+        </MenuButton>
+        <InformationModal data={open} handler={handleClick} />
+      </Navigation>
     </AppBar>
   );
 };
+
+const Navigation = styled(Toolbar)`
+  background-color: white;
+  border-bottom: 1px solid #dddddd;
+`;
+
+const TitleContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: center;
+`;
+
+const SubTitle = styled(Chip)`
+  background-color: #7dd8ff;
+  color: white;
+`;
+
+const Title = styled(Typography)`
+  color: #3e3e3e;
+  font-weight: bold;
+  margin-top: 4px;
+`;
+
+const MenuButton = styled(Button)`
+  border: 1px solid #777777;
+  color: #3e3e3e;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+`;
 
 export default NavigationBar;
