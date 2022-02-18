@@ -3,7 +3,6 @@ import {
   DataInterface,
   ColDataInterface,
   RowDataInterface,
-  StringObjKey,
 } from 'Utils/Interfaces';
 import { FooterArrayInterface } from 'Utils/Interfaces';
 import { Chip, ChipProps } from '@mui/material';
@@ -117,17 +116,17 @@ export const MODAL_INFO = [
 
 const CategoryType: { [key: string]: number } = {
   데이터출처: 4,
-  출고서파일명: 10,
+  출고서파일명: 12,
   엑셀행순번: 4,
   매핑상태: 13,
   재고부족여부: 12,
-  상품코드: 10,
+  상품코드: 12,
   상품명: 15,
   상품가격: 6,
   상품수량: 4,
   연관상품ID: 4,
   주문서양식: 7,
-  주문명: 15,
+  주문명: 18,
   주문번호: 13,
   주문수량: 4,
   주문단위: 4,
@@ -137,7 +136,7 @@ const CategoryType: { [key: string]: number } = {
   수취인연락처: 15,
   메모: 4,
   택배사명: 5,
-  출고코드: 10,
+  출고코드: 12,
   출고수량: 4,
   출고상태: 5,
   출고유형: 5,

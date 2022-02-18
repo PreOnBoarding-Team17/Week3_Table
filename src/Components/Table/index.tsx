@@ -1,15 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from '@emotion/styled';
+import { getColGrid, getRowGrid, INITIAL_CATEGORY } from 'Utils/Constants';
+import SettingCategory from 'Components/SettingCategory';
 import { DataGrid, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { Box } from '@mui/system';
-import SettingCategory from 'Components/SettingCategory';
-import {
-  getColGrid,
-  getRowGrid,
-  ALL_CATEGORY,
-  PRODUCT_CATEGORY,
-  INITIAL_CATEGORY,
-} from 'Utils/Constants';
+import styled from '@emotion/styled';
 import {
   DataInterface,
   ColDataInterface,
@@ -23,7 +17,6 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ datas }) => {
   const localSelected = localStorage.getItem('selected');
-
   const [selected, setSelected] = useState<SelectedInterface>(
     localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
   );
@@ -69,11 +62,19 @@ const Table: React.FC<TableProps> = ({ datas }) => {
         columns={columns}
         pageSize={rows.length}
         rowsPerPageOptions={[rows.length]}
-        rowHeight={100}
         disableExtendRowFullWidth={true}
         hideFooterPagination
         components={{
           Toolbar: CustomToolbar,
+        }}
+        sx={{
+          border: 'none',
+          borderTop: 2,
+          borderRadius: 0,
+          borderColor: 'black',
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
         }}
       />
     </TableWrap>
