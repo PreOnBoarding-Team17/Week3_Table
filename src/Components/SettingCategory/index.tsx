@@ -13,10 +13,10 @@ import { SelectedInterface } from 'Utils/Interfaces';
 import useToggle from 'Utils/Hooks/UseToggle';
 import SubmitButton from 'Components/Common/SubmitButton';
 
-const BTNTEXT = '+ 카테고리 설정';
-const MODALTITLE = '카테고리 선택해주세요.';
+const BTN_TEXT = '+ 카테고리 설정';
+const MODAL_TITLE = '카테고리를 선택해주세요.';
 
-const MODALBTNTEXT = '선택 완료';
+const MODAL_BTN_TEXT = '선택 완료';
 
 interface SettingCategoryProps {
   selected: SelectedInterface;
@@ -49,11 +49,11 @@ const SettingCategory: React.FC<SettingCategoryProps> = ({
   return (
     <div>
       <Button variant="outlined" color="inherit" onClick={toggleTrue}>
-        {BTNTEXT}
+        {BTN_TEXT}
       </Button>
       <Modal open={toggle} onClose={toggleOutSide}>
         <ModalContainer>
-          <ModalTitle variant="h6">{MODALTITLE}</ModalTitle>
+          <ModalTitle variant="h6">{MODAL_TITLE}</ModalTitle>
           <ModalContent>
             <FormGroup>
               {Object.entries(copySelected).map(([key, value]) => (
@@ -73,7 +73,7 @@ const SettingCategory: React.FC<SettingCategoryProps> = ({
           </ModalContent>
           <SubmitButton
             variant="contained"
-            text={MODALBTNTEXT}
+            text={MODAL_BTN_TEXT}
             onClick={handleSubmit}
           />
         </ModalContainer>
