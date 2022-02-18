@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { fetchData } from 'API';
 import { Global } from '@emotion/react';
 import GlobalStyles from 'Utils/Styles/GlobalStyles';
+import NavigationBar from 'Components/Common/NavigationBar';
 
 function App() {
   useEffect(() => {
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Global styles={GlobalStyles} />
-      ased
+      <NavigationBar />
     </div>
   );
 }
