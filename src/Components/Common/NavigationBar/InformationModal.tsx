@@ -3,6 +3,7 @@ import { Box, List, Drawer, ListItem, Button, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { ModalInfo } from 'Utils/Constants';
 import Circle from 'Assets/Circle.png';
+import SubmitButton from 'Components/Common/SubmitButton';
 
 interface InformationModalProps {
   handler: () => void;
@@ -33,7 +34,7 @@ const InformationModal = ({ data, handler }: InformationModalProps) => {
             </InfoList>
           ))}
           <ButtonBox>
-            <Button variant="contained">변경하기</Button>
+            <SubmitButton variant="contained" text="변경하기" />
           </ButtonBox>
         </List>
       </Box>
