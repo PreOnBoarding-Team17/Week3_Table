@@ -1,65 +1,126 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getColGrid, getRowGrid, INITIAL_CATEGORY } from 'Utils/Constants';
+import SettingCategory from 'Components/SettingCategory';
+import { DataGrid, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { Box } from '@mui/system';
 import styled from '@emotion/styled';
-import { DataGrid } from '@mui/x-data-grid';
-
-import { getColGrid, getRowGrid, ALL_CATEGORY } from 'Utils/Constants';
 import {
   DataInterface,
   ColDataInterface,
   RowDataInterface,
+  SelectedInterface,
 } from 'Utils/Interfaces';
-
-const testCategory = [
-  '매핑상태',
-  '상품코드',
-  '주문명',
-  '주문번호',
-  '주문수량',
-  '출고수량',
-];
+import CellClickModal from './CellClickModal';
+import useToggle from 'Utils/Hooks/UseToggle';
 
 interface TableProps {
-  datas: DataInterface[] | null;
+  datas: DataInterface[];
 }
 
 const Table: React.FC<TableProps> = ({ datas }) => {
-  const [columns, setColumns] = useState<ColDataInterface[]>([]);
-  const [rows, setRows] = useState<RowDataInterface[]>([]);
+  const [toggle, toggleTrue, toggleFalse] = useToggle(false);
+  const [currentRow, setCurrentRow] = useState<RowDataInterface>({ id: 0 });
+
+  const localSelected = localStorage.getItem('selected');
+  const [selected, setSelected] = useState<SelectedInterface>(
+    localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
+  );
+  const [selectedTrue, setSelectedTrue] = useState<string[]>([]);
+
+  useEffect(() => {
+    !localSelected &&
+      localStorage.setItem('selected', JSON.stringify(INITIAL_CATEGORY));
+  }, []);
+
+  useEffect(() => {
+    const options: string[] = [];
+    Object.entries(selected).map(([key, value]) => {
+      value && options.push(key);
+    });
+
+    setSelectedTrue(options);
+  }, [selected]);
 
   useEffect(() => {
     if (datas) {
-      setColumns(getColGrid(ALL_CATEGORY));
-      setRows(getRowGrid([...datas, ...datas], getColGrid(ALL_CATEGORY)));
-      console.log(rows, columns);
+      setColumns(getColGrid(selectedTrue));
+      setRows(getRowGrid([...datas], getColGrid(selectedTrue)));
     }
-  }, [datas]);
+  }, [datas, selectedTrue]);
+
+  const [columns, setColumns] = useState<ColDataInterface[]>([]);
+  const [rows, setRows] = useState<RowDataInterface[]>([]);
+
+  const CustomToolbar = useCallback(() => {
+    return (
+      <CustomToolbarWrap>
+        <GridToolbarFilterButton />
+        <SettingCategory selected={selected} setSelected={setSelected} />
+      </CustomToolbarWrap>
+    );
+  }, [selected]);
+
   return (
-    <TableWrap>
-      {rows.length > 0 && (
+    <>
+      <TableWrap>
         <DataGrid
           rows={rows}
           columns={columns}
           pageSize={rows.length}
           rowsPerPageOptions={[rows.length]}
-          rowHeight={100}
           disableExtendRowFullWidth={true}
           hideFooterPagination
+          onCellClick={(e) => {
+            toggleTrue();
+            setCurrentRow(e.row);
+          }}
+          localeText={{
+            toolbarFilters: '카테고리 검색',
+          }}
+          components={{
+            Toolbar: CustomToolbar,
+          }}
+          sx={{
+            border: 'none',
+            borderTop: 2,
+            borderRadius: 0,
+            borderColor: 'black',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+          }}
+        />
+      </TableWrap>
+      {toggle && (
+        <CellClickModal
+          datas={datas}
+          toggle={toggle}
+          toggleFalse={toggleFalse}
+          row={currentRow}
         />
       )}
-    </TableWrap>
+    </>
   );
 };
 
 const TableWrap = styled.section`
-  width: calc(100% - 60px);
-  height: 75vh;
-  margin: 20px 30px;
-  padding: 50px;
+  width: 100%;
+  height: calc(100vh - 280px);
+  padding-top: 50px;
   box-sizing: border-box;
-  border: 1px solid #dddddd;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: scroll;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    height: calc(100vh - 220px);
+  }
+`;
+
+const CustomToolbarWrap = styled(Box)`
+  position: absolute;
+  top: -50px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export default Table;

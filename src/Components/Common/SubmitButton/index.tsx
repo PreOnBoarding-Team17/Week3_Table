@@ -18,7 +18,7 @@ const SubmitButton = ({ variant, text, onClick }: SubmitButtonProps) => {
 
 const CustomButton = styled(Button)`
   border: 1px solid #1976d2;
-  margin: 10px;
+  margin: 4px 10px;
   width: 155px;
   height: 45px;
 `;

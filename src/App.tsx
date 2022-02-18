@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from 'API';
-import { Global } from '@emotion/react';
 import GlobalStyles from 'Utils/Styles/GlobalStyles';
+import styled from '@emotion/styled';
 import NavigationBar from 'Components/Common/NavigationBar';
-import { INITIAL_CATEGORY } from 'Utils/Constants/';
-import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
-import SelectModal from 'Components/SelectModal';
 import Table from 'Components/Table';
 import Footer from 'Components/Footer';
+import { fetchData } from 'API';
+import { Global } from '@emotion/react';
+import { Box } from '@mui/system';
+import { DataInterface } from 'Utils/Interfaces';
 
 function App() {
-  const localSelected = localStorage.getItem('selected');
-  const [selected, setSelected] = useState<SelectedInterface>(
-    localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
-  );
-  const [data, setData] = useState<DataInterface[] | null>(null);
+  const [datas, setDatas] = useState<DataInterface[] | null>(null);
 
   useEffect(() => {
-    !localSelected &&
-      localStorage.setItem('selected', JSON.stringify(INITIAL_CATEGORY));
-
     fetchData().then((res) => {
-      setData(res.data);
+      setDatas(res.data);
     });
   }, []);
 
@@ -29,15 +22,34 @@ function App() {
     <div className="App">
       <Global styles={GlobalStyles} />
       <NavigationBar />
-      <SelectModal
-        text="+ 카테고리 설정"
-        selected={selected}
-        setSelected={setSelected}
-      />
-      <Table datas={data} />
+      <Wrapper>
+        {datas && (
+          <Content>
+            <Table datas={datas} />
+          </Content>
+        )}
+      </Wrapper>
       <Footer />
     </div>
   );
 }
+
+const Wrapper = styled(Box)`
+  padding: 20px 25px 10px;
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+`;
+
+const Content = styled(Box)`
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 30px;
+  @media (max-width: 768px) {
+    padding: 0;
+    border: none;
+  }
+`;
 
 export default App;
