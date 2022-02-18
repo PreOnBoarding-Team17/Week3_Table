@@ -30,3 +30,14 @@ export const RELEASEDATA = [
   '출고 요청일자',
   '출고 창고명',
 ];
+
+export const ModalInfo = [
+  ['text', '출고 전표 번호', '00DNLQCDO0120220117D0KE3'],
+  ['text', '출고 요청일자', '2022-01-18'],
+  ['text', '출고 요청업체', '콜로상사'],
+  ['text', '출고 요청자', 'test_si@colo.kr'],
+  ['text', '출고 방식', '택배'],
+  ['option', '출고 상태', '출고 요청'],
+  ['option', '출고 유형', '오전(10:00)출고'],
+  ['text', '파일명', '테스트_콜로상사주문서_test.xls'],
+];
