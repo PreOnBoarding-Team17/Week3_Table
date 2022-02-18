@@ -57,7 +57,10 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
 
       const compareResult = rowToArray.filter((x) => newDataArray.includes(x));
 
-      compareResult.length === rowToArray.length && setModalData(d);
+      console.log(compareResult, rowToArray, newDataArray);
+
+      compareResult.length === rowToArray.length ||
+        (compareResult.length === rowToArray.length - 1 && setModalData(d));
     });
   }, []);
 
@@ -70,7 +73,10 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
             {Object.entries(modalData).map(([key, value]) => (
               <ModalContent key={key}>
                 <CircleIcon color="primary" fontSize="small" sx={{ mx: 2 }} />
-                {key} : {value}
+                {key} :{' '}
+                {typeof value === 'number'
+                  ? value.toLocaleString('en-US')
+                  : value}
               </ModalContent>
             ))}
           </FormGroup>
