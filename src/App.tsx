@@ -1,24 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from 'API';
-import { Button } from '@mui/material';
+import { Global } from '@emotion/react';
+import GlobalStyles from 'Utils/Styles/GlobalStyles';
+import NavigationBar from 'Components/Common/NavigationBar';
+import { INITIAL_CATEGORY } from 'Utils/Constants/';
+import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
+import SelectModal from 'Components/SelectModal';
 import Table from 'Components/Table';
 
 function App() {
-  const [allData, setAllData] = useState<any>([]);
+  const localSelected = localStorage.getItem('selected');
+  const [selected, setSelected] = useState<SelectedInterface>(
+    localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
+  );
+  const [data, setData] = useState<DataInterface | null>(null);
+
   useEffect(() => {
+    !localSelected &&
+      localStorage.setItem('selected', JSON.stringify(INITIAL_CATEGORY));
+
     fetchData().then((res) => {
-      console.log(res.data);
-      setAllData(res.data);
+      setData(res.data);
     });
   }, []);
 
   return (
     <div className="App">
       Hello
-      <Button variant="contained" color="primary">
-        Text
-      </Button>
-      <Table datas={allData} />
+      <Global styles={GlobalStyles} />
+      <NavigationBar />
+      {/* <Table datas={data} /> */}
+      <SelectModal
+        text="+ 카테고리 설정"
+        selected={selected}
+        setSelected={setSelected}
+      />
     </div>
   );
 }
