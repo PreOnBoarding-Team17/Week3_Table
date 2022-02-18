@@ -71,3 +71,9 @@ export interface SelectedInterface {
   출고요청일자: boolean;
   출고창고명: boolean;
 }
+
+interface FooterElementInterface {
+  variant: 'contained' | 'outlined';
+  text: string;
+}
+export type FooterArrayInterface = Array<FooterElementInterface>;
