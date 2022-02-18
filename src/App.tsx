@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData } from 'API';
+import { Global } from '@emotion/react';
+import GlobalStyles from 'Utils/Styles/GlobalStyles';
+import NavigationBar from 'Components/Common/NavigationBar';
 import { INITIAL_CATEGORY } from 'Utils/Constants/';
 import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
 import SelectModal from 'Components/SelectModal';
@@ -22,7 +25,8 @@ function App() {
 
   return (
     <div className="App">
-      Hello
+      <Global styles={GlobalStyles} />
+      <NavigationBar />
       <SelectModal
         text="+ 카테고리 설정"
         selected={selected}
