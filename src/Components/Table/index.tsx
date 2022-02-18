@@ -64,6 +64,9 @@ const Table: React.FC<TableProps> = ({ datas }) => {
         rowsPerPageOptions={[rows.length]}
         disableExtendRowFullWidth={true}
         hideFooterPagination
+        localeText={{
+          toolbarFilters: '카테고리 검색',
+        }}
         components={{
           Toolbar: CustomToolbar,
         }}
