@@ -9,7 +9,7 @@ function App() {
   const [selected, setSelected] = useState<SelectedInterface>(
     localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
   );
-  const [data, setData] = useState<DataInterface | null>(null);
+  const [data, setData] = useState<DataInterface[] | null>(null);
 
   useEffect(() => {
     !localSelected &&
