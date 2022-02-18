@@ -185,21 +185,21 @@ function getChipProps(params: GridRenderCellParams): ChipProps {
     return {
       label: params.value,
       style: {
-        backgroundColor: cyan['A200'],
+        backgroundColor: cyan[200],
       },
     };
   } else if (params.value === '주문명세트지정') {
     return {
       label: params.value,
       style: {
-        backgroundColor: yellow['A200'],
+        backgroundColor: yellow[200],
       },
     };
   } else if (params.value === '주문취소') {
     return {
       label: params.value,
       style: {
-        backgroundColor: lightGreen['A200'],
+        backgroundColor: lightGreen[200],
       },
     };
   } else {
