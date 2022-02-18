@@ -40,6 +40,8 @@
 - 이러한 화면들은 제일 뒤까지 스크롤을 해야만 볼 수 있으며, Row가 많으면 가장 아래까지 내려와 다시 스크롤을 해야 하는 번거로움이 있습니다.
 - 앞쪽에 존재했던 기준이 되는 정보들을 뒷쪽에서 다시 확인하기에 어려운 점이 있습니다.
 
+<br/>
+
 ### 문제 해결을 위한 아이디어
 
 [초기 아이디어 ✨](https://onyx-limburger-373.notion.site/02-17-221120eece3840a6946ab355479246c7)
@@ -51,13 +53,41 @@
 - 필터 기능을 통해 원하는 항목을 빠르게 확인할 수 있으면 좋겠다고 생각했습니다.
 - 원하는 데이터를 좀 더 자세히 보고 싶을 때, 그 항목을 클릭하면 모달과 함께 모든 데이터를 볼 수 있도록 구현하면 좋겠다고 생각했습니다.
 
-### 아이디어 구현 과정
+<br/>
+
+### 아이디어 구현 내용
+
+- 아래 이미지와 같이 구현했습니다.
+- 레이아웃은 데스크톱, 태블릿 두 기기를 기준으로 제작하였습니다.
+
+![ㅁㅁㅁ](https://user-images.githubusercontent.com/98322239/154719602-97c50fcb-6cbe-444b-97bc-afbb005302e6.jpg)
+
 
 <br />
 
 ## 3. 프로젝트 구조 🌲
 
 ```bash
+server
+src
+├── API
+├── Assets
+├── Components
+│   ├── Common
+│   │    ├── NavigationBar
+│   │    └── SubmitButton
+│   ├── Footer
+│   ├── SettingCategory
+│   └── Table
+├── Utils
+│   ├── Constants
+│   ├── Hooks
+│   │    └── useToggle
+│   ├── Interfaces
+│   └── Styles
+│        └── GlobalStyles
+├── App.tsx
+└── index.tsx
 
 ```
 
@@ -67,9 +97,9 @@
 
 | 이름                                       | 담당 역할                               |
 | ------------------------------------------ | --------------------------------------- |
-| [황상섭](https://github.com/sangseophwang) | 네비게이션바, 출고 신청 정보, 버튼 구현 |
-| [정인권](https://github.com/developjik)    | 초기 세팅, 카테고리 설정 기능           |
-| [현다솜](https://github.com/som-syom)      | 테이블 항목 구현                        |
+| [황상섭](https://github.com/sangseophwang) | 네비게이션바, 출고 신청 정보, 버튼 구현, 테이블 디테일 수정, 문서 작성 |
+| [정인권](https://github.com/developjik)    | 초기 세팅, 카테고리 설정 기능, 테이블 클릭시 전체 데이터 모달 기능 구현  |
+| [현다솜](https://github.com/som-syom)      | Table 제작, Table 데이터 가공 로직 구현, 반응형 스타일 적용, 배포  |
 
 <br/>
 
@@ -77,9 +107,32 @@
 
 #### [1] 커밋 컨벤션은 다음과 같이 정했습니다 ✨
 
+| 커밋명      | 내용                                             |
+| ----------- | ------------------------------------------------ |
+| ✨ feat     | 파일, 폴더, 새로운 기능 추가                     |
+| 🐛 fix      | 버그 수정                                        |
+| 💄 style    | 코드 스타일 변경                                 |
+| 📝 docs     | 문서 생성, 추가, 수정(README.md)                 |
+| ♻️ refactor | 코드 리팩토링                                    |
+| 🚑️ chore   | 코드 수정 (JSON 데이터 포맷 변경 / scss 변경 등) |
+
+자세한 내용은 [여기](https://github.com/PreOnBoarding-Team17/Week3_Table/issues/2)서 확인해보실 수 있습니다!
+
+<br/>
+
 #### [2] 풀 리퀘스트 시 팀원들과 코드 리뷰를 진행했습니다 🔥
 
+[풀리퀘스트 링크](https://github.com/PreOnBoarding-Team17/Week3_Table/pulls?q=is%3Apr+is%3Aclosed)
+
+![스크린샷 2022-02-19 오전 1 17 10](https://user-images.githubusercontent.com/98322239/154720831-a4260ddb-571e-4b95-bb62-551025f69923.png)
+
+<br/>
+
 #### [3] 이슈를 작성해 서로의 진행상황을 공유했습니다 👀
+
+[이슈 링크](https://github.com/PreOnBoarding-Team17/Week3_Table/issues)
+
+![스크린샷 2022-02-19 오전 1 17 28](https://user-images.githubusercontent.com/98322239/154720895-817caec5-2b0d-4c8e-ab85-92fc8b0608e2.png)
 
 <br/>
 
