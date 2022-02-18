@@ -6,6 +6,7 @@ import NavigationBar from 'Components/Common/NavigationBar';
 import { INITIAL_CATEGORY } from 'Utils/Constants/';
 import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
 import SelectModal from 'Components/SelectModal';
+import Table from 'Components/Table';
 
 function App() {
   const localSelected = localStorage.getItem('selected');
@@ -32,6 +33,7 @@ function App() {
         selected={selected}
         setSelected={setSelected}
       />
+      <Table datas={data} />
     </div>
   );
 }
