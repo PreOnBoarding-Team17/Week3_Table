@@ -32,4 +32,6 @@ export const ModalContents = styled(Box)`
 
 export const ModalContent = styled(Box)`
   margin: 12px 0;
+  display: flex;
+  align-items: center;
 `;

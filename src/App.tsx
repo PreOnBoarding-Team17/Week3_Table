@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Global } from '@emotion/react';
 import GlobalStyles from 'Utils/Styles/GlobalStyles';
-import { Box } from '@mui/system';
 import styled from '@emotion/styled';
 import NavigationBar from 'Components/Common/NavigationBar';
 import Table from 'Components/Table';
 import Footer from 'Components/Footer';
-import { DataInterface } from 'Utils/Interfaces';
 import { fetchData } from 'API';
+import { Global } from '@emotion/react';
+import { Box } from '@mui/system';
+import { DataInterface } from 'Utils/Interfaces';
 
 function App() {
   const [datas, setDatas] = useState<DataInterface[] | null>(null);
@@ -22,7 +22,6 @@ function App() {
     <div className="App">
       <Global styles={GlobalStyles} />
       <NavigationBar />
-
       <Wrapper>
         {datas && (
           <Content>
@@ -36,7 +35,10 @@ function App() {
 }
 
 const Wrapper = styled(Box)`
-  padding: 20px 25px;
+  padding: 20px 25px 10px;
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const Content = styled(Box)`
@@ -44,6 +46,10 @@ const Content = styled(Box)`
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 30px;
+  @media (max-width: 768px) {
+    padding: 0;
+    border: none;
+  }
 `;
 
 export default App;

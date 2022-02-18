@@ -12,6 +12,7 @@ import {
   NewDataInterface,
   RowDataInterface,
 } from 'Utils/Interfaces';
+import CircleIcon from '@mui/icons-material/Circle';
 
 interface CellClickModalProps {
   datas: DataInterface[];
@@ -68,6 +69,7 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
           <FormGroup>
             {Object.entries(modalData).map(([key, value]) => (
               <ModalContent key={key}>
+                <CircleIcon color="primary" fontSize="small" sx={{ mx: 2 }} />
                 {key} : {value}
               </ModalContent>
             ))}
