@@ -67,7 +67,7 @@ const ListIcon = styled.img`
   position: absolute;
   right: 7px;
   width: 7px;
-  top: 26px;
+  top: 22px;
 `;
 
 const TextBox = styled(Box)`
