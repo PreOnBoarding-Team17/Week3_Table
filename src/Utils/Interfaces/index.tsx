@@ -1,4 +1,51 @@
+export interface StringObjKey {
+  [key: string | number]: string | number | undefined;
+}
+
+export interface ColDataInterface {
+  field: string;
+  headerName: string;
+  minWidth: number;
+}
+
+export interface RowDataInterface {
+  [key: string | number]: string | number | undefined;
+  id: number;
+  col1?: string | number;
+  col2?: string | number;
+  col3?: string | number;
+  col4?: string | number;
+  col5?: string | number;
+  col6?: string | number;
+  col7?: string | number;
+  col8?: string | number;
+  col9?: string | number;
+  col10?: string | number;
+  col11?: string | number;
+  col12?: string | number;
+  col13?: string | number;
+  col14?: string | number;
+  col15?: string | number;
+  col16?: string | number;
+  col17?: string | number;
+  col18?: string | number;
+  col19?: string | number;
+  col20?: string | number;
+  col21?: string | number;
+  col22?: string | number;
+  col23?: string | number;
+  col24?: string | number;
+  col25?: string | number;
+  col26?: string | number;
+  col27?: string | number;
+  col28?: string | number;
+  col29?: string | number;
+  col30?: string | number;
+}
+
 export interface ProductInterface {
+  [key: string | number]: string | number | undefined;
+
   상품코드?: string;
   상품명?: string;
   상품가격?: number;
@@ -6,6 +53,7 @@ export interface ProductInterface {
   연관상품ID?: string;
 }
 export interface OrderInterface {
+  [key: string | number]: string | number | undefined;
   주문서양식?: string;
   주문명?: string;
   주문번호?: string;
@@ -19,6 +67,7 @@ export interface OrderInterface {
   택배사명?: string;
 }
 export interface ReleaseInterface {
+  [key: string | number]: string | number | undefined;
   출고코드?: string;
   출고수량?: number;
   출고상태?: string;
@@ -28,13 +77,17 @@ export interface ReleaseInterface {
   출고요청일자?: string;
   출고창고명?: string;
 }
+export interface RootInterface {
+  [key: string | number]: any;
 
-export interface DataInterface {
   데이터출처?: string;
   출고서파일명?: string;
   엑셀행순번?: number;
   매핑상태?: string;
   재고부족여부?: string;
+}
+
+export interface DataInterface extends RootInterface {
   상품?: ProductInterface;
   주문?: OrderInterface;
   출고?: ReleaseInterface;
