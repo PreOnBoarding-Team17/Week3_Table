@@ -1,3 +1,11 @@
+import {
+  DataInterface,
+  ColDataInterface,
+  RowDataInterface,
+  StringObjKey,
+} from 'Utils/Interfaces';
+import { FooterArrayInterface } from 'Utils/Interfaces';
+
 export const PRODUCT_CATEGORY = [
   '상품코드',
   '상품명',
@@ -29,6 +37,14 @@ export const RELEASE_CATEGORY = [
   '출고요청자',
   '출고요청일자',
   '출고창고명',
+];
+
+export const ROOT_CATEGORY = [
+  '데이터출처',
+  '출고서파일명',
+  '엑셀행순번',
+  '매핑상태',
+  '재고부족여부',
 ];
 
 export const ALL_CATEGORY = [
@@ -74,7 +90,7 @@ export const INITIAL_CATEGORY = {
   출고창고명: false,
 };
 
-export const ModalInfo = [
+export const MODAL_INFO = [
   ['text', '출고 전표 번호', '00DNLQCDO0120220117D0KE3'],
   ['text', '출고 요청일자', '2022-01-18'],
   ['text', '출고 요청업체', '콜로상사'],
@@ -84,3 +100,99 @@ export const ModalInfo = [
   ['option', '출고 유형', '오전(10:00)출고'],
   ['text', '파일명', '테스트_콜로상사주문서_test.xls'],
 ];
+
+const CategoryType: { [key: string]: number } = {
+  데이터출처: 4,
+  출고서파일명: 10,
+  엑셀행순번: 4,
+  매핑상태: 7,
+  재고부족여부: 6,
+  상품코드: 10,
+  상품명: 15,
+  상품가격: 6,
+  상품수량: 4,
+  연관상품ID: 4,
+  주문서양식: 7,
+  주문명: 15,
+  주문번호: 13,
+  주문수량: 4,
+  주문단위: 4,
+  주문자명: 4,
+  주문자연락처: 15,
+  수취인명: 4,
+  수취인연락처: 15,
+  메모: 4,
+  택배사명: 5,
+  출고코드: 10,
+  출고수량: 4,
+  출고상태: 5,
+  출고유형: 5,
+  출고요청업체: 5,
+  출고요청자: 4,
+  출고요청일자: 12,
+  출고창고명: 5,
+};
+
+export const FOOTER_INFO: FooterArrayInterface = [
+  { variant: 'contained', text: '출고주문서 다운로드' },
+  { variant: 'contained', text: '전체출고취소' },
+  { variant: 'contained', text: '매핑결과 최종 확인' },
+  { variant: 'outlined', text: '목록으로' },
+];
+
+const getWidth = (column: string | number) => {
+  const size: number = CategoryType[column] * 10;
+
+  return size;
+};
+
+export const getColGrid = (columns: string[]): ColDataInterface[] => {
+  return columns.map((column: string, index: number) => {
+    return {
+      field: `col${index + 1}`,
+      headerName: column,
+      minWidth: getWidth(column),
+    };
+  });
+};
+
+export const getLocation = (category: string): string => {
+  if (PRODUCT_CATEGORY.find((el) => el === category)) {
+    return 'product';
+  } else if (ORDER_CATEGORY.find((el) => el === category)) {
+    return 'order';
+  } else if (RELEASE_CATEGORY.find((el) => el === category)) {
+    return 'release';
+  } else {
+    return 'root';
+  }
+};
+
+export const getRowGrid = (
+  datas: DataInterface[],
+  rowData: ColDataInterface[]
+): RowDataInterface[] => {
+  return datas.map((data: DataInterface, index: number) => {
+    const newData: RowDataInterface = { id: index + 1 };
+
+    if (data && data.상품 && data.주문 && data.출고) {
+      for (let i = 0; i < rowData.length; i++) {
+        switch (getLocation(rowData[i].headerName)) {
+          case 'product':
+            newData[`col${i + 1}`] = data.상품[rowData[i].headerName];
+            break;
+          case 'order':
+            newData[`col${i + 1}`] = data.주문[rowData[i].headerName];
+            break;
+          case 'release':
+            newData[`col${i + 1}`] = data.출고[rowData[i].headerName];
+            break;
+          default:
+            newData[`col${i + 1}`] = data[rowData[i].headerName];
+            break;
+        }
+      }
+    }
+    return newData;
+  });
+};

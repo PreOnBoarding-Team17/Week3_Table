@@ -5,6 +5,7 @@ import { Box } from '@mui/system';
 import styled from '@emotion/styled';
 import NavigationBar from 'Components/Common/NavigationBar';
 import Table from 'Components/Table';
+import Footer from 'Components/Footer';
 import { DataInterface } from 'Utils/Interfaces';
 import { fetchData } from 'API';
 
@@ -29,6 +30,7 @@ function App() {
           </Content>
         )}
       </Wrapper>
+      <Footer />
     </div>
   );
 }

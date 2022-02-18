@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, List, Drawer, ListItem, Button, Typography } from '@mui/material';
+import { Box, List, Drawer, ListItem, Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { ModalInfo } from 'Utils/Constants';
+import { MODAL_INFO } from 'Utils/Constants';
 import Circle from 'Assets/Circle.png';
+import SubmitButton from 'Components/Common/SubmitButton';
 
 interface InformationModalProps {
   handler: () => void;
@@ -15,7 +16,7 @@ const InformationModal = ({ data, handler }: InformationModalProps) => {
       <Box sx={{ width: 300 }}>
         <List>
           <Title>출고 신청 정보</Title>
-          {ModalInfo.map((element, index) => (
+          {MODAL_INFO.map((element, index) => (
             <InfoList key={index}>
               <ListBox>
                 <ListIcon src={Circle} />
@@ -33,7 +34,7 @@ const InformationModal = ({ data, handler }: InformationModalProps) => {
             </InfoList>
           ))}
           <ButtonBox>
-            <Button variant="contained">변경하기</Button>
+            <SubmitButton variant="contained" text="변경하기" />
           </ButtonBox>
         </List>
       </Box>
@@ -67,7 +68,7 @@ const ListIcon = styled.img`
   position: absolute;
   right: 7px;
   width: 7px;
-  top: 26px;
+  top: 22px;
 `;
 
 const TextBox = styled(Box)`
