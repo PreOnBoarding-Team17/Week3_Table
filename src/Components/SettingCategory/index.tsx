@@ -96,6 +96,7 @@ const ModalContainer = styled(Box)`
   flex-direction: column;
   align-items: center;
   padding: 32px 16px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const ModalTitle = styled(Typography)`

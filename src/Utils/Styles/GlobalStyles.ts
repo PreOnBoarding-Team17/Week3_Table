@@ -17,6 +17,9 @@ const GlobalStyles = css`
       padding: 0 16px !important;
     }
   }
+  .MuiDataGrid-withBorder {
+    border-right: none !important;
+  }
 `;
 
 export default GlobalStyles;
