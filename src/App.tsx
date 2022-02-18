@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Global } from '@emotion/react';
 import GlobalStyles from 'Utils/Styles/GlobalStyles';
-import { Box } from '@mui/system';
 import styled from '@emotion/styled';
 import NavigationBar from 'Components/Common/NavigationBar';
 import Table from 'Components/Table';
 import Footer from 'Components/Footer';
-import { DataInterface } from 'Utils/Interfaces';
 import { fetchData } from 'API';
+import { Global } from '@emotion/react';
+import { Box } from '@mui/system';
+import { DataInterface } from 'Utils/Interfaces';
 
 function App() {
   const [datas, setDatas] = useState<DataInterface[] | null>(null);

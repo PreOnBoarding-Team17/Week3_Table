@@ -1,16 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from '@emotion/styled';
+import { getColGrid, getRowGrid, INITIAL_CATEGORY } from 'Utils/Constants';
+import SettingCategory from 'Components/SettingCategory';
 import { DataGrid, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { Box } from '@mui/system';
-import SettingCategory from 'Components/SettingCategory';
-import { getColGrid, getRowGrid, INITIAL_CATEGORY } from 'Utils/Constants';
+import styled from '@emotion/styled';
 import {
   DataInterface,
   ColDataInterface,
   RowDataInterface,
   SelectedInterface,
 } from 'Utils/Interfaces';
-import { NONAME } from 'dns';
 
 interface TableProps {
   datas: DataInterface[];
@@ -76,8 +75,6 @@ const Table: React.FC<TableProps> = ({ datas }) => {
           '& .MuiDataGrid-cell:hover': {
             color: 'primary.main',
           },
-          density: 'compact',
-          padding: 0,
         }}
       />
     </TableWrap>
