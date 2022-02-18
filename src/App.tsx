@@ -22,7 +22,6 @@ function App() {
     <div className="App">
       <Global styles={GlobalStyles} />
       <NavigationBar />
-
       <Wrapper>
         {datas && (
           <Content>
@@ -36,7 +35,10 @@ function App() {
 }
 
 const Wrapper = styled(Box)`
-  padding: 20px 25px;
+  padding: 20px 25px 10px;
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const Content = styled(Box)`
@@ -44,6 +46,10 @@ const Content = styled(Box)`
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 30px;
+  @media (max-width: 768px) {
+    padding: 0;
+    border: none;
+  }
 `;
 
 export default App;

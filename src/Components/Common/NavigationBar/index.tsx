@@ -33,6 +33,7 @@ const NavigationBar = () => {
 const Navigation = styled(Toolbar)`
   background-color: white;
   border-bottom: 1px solid #dddddd;
+  align-items: end;
 `;
 
 const TitleContainer = styled(Box)`
@@ -57,6 +58,7 @@ const MenuButton = styled(Button)`
   border: 1px solid #777777;
   color: #3e3e3e;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 `;
 
 export default NavigationBar;

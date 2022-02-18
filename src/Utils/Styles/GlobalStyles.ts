@@ -6,6 +6,10 @@ const GlobalStyles = css`
   body {
     font-family: 'Noto Sans KR';
   }
+
+  .MuiDataGrid-footerContainer {
+    min-height: 0 !important;
+  }
 `;
 
 export default GlobalStyles;
