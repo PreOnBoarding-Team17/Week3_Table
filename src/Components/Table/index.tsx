@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
 import { DataGrid } from '@mui/x-data-grid';
 import {
   PRODUCT_CATEGORY,
@@ -45,15 +46,25 @@ const Table: React.FC<TableProps> = ({ datas }) => {
     }
   }, [datas]);
   return (
-    <section>
+    <TableWrap>
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={rows.length}
         autoHeight
       />
-    </section>
+    </TableWrap>
   );
 };
+
+const TableWrap = styled.section`
+  width: calc(100% - 60px);
+  margin: 20px 30px;
+  padding: 50px;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+`;
 
 export default Table;

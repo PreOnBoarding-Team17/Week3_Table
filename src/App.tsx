@@ -26,15 +26,14 @@ function App() {
 
   return (
     <div className="App">
-      Hello
       <Global styles={GlobalStyles} />
       <NavigationBar />
-      {/* <Table datas={data} /> */}
       <SelectModal
         text="+ 카테고리 설정"
         selected={selected}
         setSelected={setSelected}
       />
+      <Table datas={data} />
     </div>
   );
 }
