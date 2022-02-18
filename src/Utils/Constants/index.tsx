@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   DataInterface,
   ColDataInterface,
@@ -5,6 +6,19 @@ import {
   StringObjKey,
 } from 'Utils/Interfaces';
 import { FooterArrayInterface } from 'Utils/Interfaces';
+import { Chip, ChipProps } from '@mui/material';
+import { GridRenderCellParams } from '@mui/x-data-grid';
+import WarningIcon from '@mui/icons-material/Warning';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import {
+  red,
+  blue,
+  orange,
+  cyan,
+  yellow,
+  lightGreen,
+} from '@mui/material/colors';
 
 export const PRODUCT_CATEGORY = [
   '상품코드',
@@ -105,8 +119,8 @@ const CategoryType: { [key: string]: number } = {
   데이터출처: 4,
   출고서파일명: 10,
   엑셀행순번: 4,
-  매핑상태: 7,
-  재고부족여부: 6,
+  매핑상태: 13,
+  재고부족여부: 12,
   상품코드: 10,
   상품명: 15,
   상품가격: 6,
@@ -140,6 +154,65 @@ export const FOOTER_INFO: FooterArrayInterface = [
   { variant: 'outlined', text: '목록으로' },
 ];
 
+function getChipProps(params: GridRenderCellParams): ChipProps {
+  if (params.value === '출고주문오류') {
+    return {
+      icon: <WarningIcon style={{ fill: red[500] }} />,
+      label: params.value,
+      style: {
+        borderColor: red[500],
+        color: red[500],
+      },
+    };
+  } else if (params.value === '정상') {
+    return {
+      icon: <CheckCircleIcon style={{ fill: blue[500] }} />,
+      label: params.value,
+      style: {
+        borderColor: blue[500],
+        color: blue[500],
+      },
+    };
+  } else if (params.value === '재고부족취소') {
+    return {
+      icon: <NewReleasesIcon style={{ fill: orange[500] }} />,
+      label: params.value,
+      style: {
+        borderColor: orange[500],
+        color: orange[500],
+      },
+    };
+  } else if (params.value === '주문명매핑성공') {
+    return {
+      label: params.value,
+      style: {
+        backgroundColor: cyan['A200'],
+      },
+    };
+  } else if (params.value === '주문명세트지정') {
+    return {
+      label: params.value,
+      style: {
+        backgroundColor: yellow['A200'],
+      },
+    };
+  } else if (params.value === '주문취소') {
+    return {
+      label: params.value,
+      style: {
+        backgroundColor: lightGreen['A200'],
+      },
+    };
+  } else {
+    return {
+      label: params.value,
+      style: {
+        borderColor: '#fff',
+      },
+    };
+  }
+}
+
 const getWidth = (column: string | number) => {
   const size: number = CategoryType[column] * 10;
 
@@ -148,11 +221,34 @@ const getWidth = (column: string | number) => {
 
 export const getColGrid = (columns: string[]): ColDataInterface[] => {
   return columns.map((column: string, index: number) => {
-    return {
-      field: `col${index + 1}`,
-      headerName: column,
-      minWidth: getWidth(column),
-    };
+    if (column === '재고부족여부') {
+      return {
+        field: `col${index + 1}`,
+        headerName: column,
+        minWidth: getWidth(column),
+        renderCell: (params: GridRenderCellParams<any, any, any>) => {
+          return (
+            <Chip variant="outlined" size="small" {...getChipProps(params)} />
+          );
+        },
+      };
+    } else if (column === '매핑상태') {
+      return {
+        field: `col${index + 1}`,
+        headerName: column,
+        minWidth: getWidth(column),
+        renderCell: (params: GridRenderCellParams<any, any, any>) => {
+          return (
+            <Chip variant="filled" size="small" {...getChipProps(params)} />
+          );
+        },
+      };
+    } else
+      return {
+        field: `col${index + 1}`,
+        headerName: column,
+        minWidth: getWidth(column),
+      };
   });
 };
 

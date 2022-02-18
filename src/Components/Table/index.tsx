@@ -45,10 +45,10 @@ const Table: React.FC<TableProps> = ({ datas }) => {
 
   useEffect(() => {
     if (datas) {
-      setColumns(getColGrid(PRODUCT_CATEGORY));
-      setRows(getRowGrid([...datas, ...datas], getColGrid(PRODUCT_CATEGORY)));
+      setColumns(getColGrid(selectedTrue));
+      setRows(getRowGrid([...datas, ...datas], getColGrid(selectedTrue)));
     }
-  }, [datas]);
+  }, [datas, selectedTrue]);
 
   const [columns, setColumns] = useState<ColDataInterface[]>([]);
   const [rows, setRows] = useState<RowDataInterface[]>([]);
