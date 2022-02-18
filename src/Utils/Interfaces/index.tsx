@@ -20,12 +20,12 @@ export interface OrderInterface {
 }
 export interface ReleaseInterface {
   출고코드?: string;
-  출고요청일자?: string;
-  출고요청업체?: string;
-  출고요청자?: string;
   출고수량?: number;
   출고상태?: string;
   출고유형?: string;
+  출고요청업체?: string;
+  출고요청자?: string;
+  출고요청일자?: string;
   출고창고명?: string;
 }
 
