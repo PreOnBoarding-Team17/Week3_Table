@@ -106,10 +106,13 @@ const Table: React.FC<TableProps> = ({ datas }) => {
 
 const TableWrap = styled.section`
   width: 100%;
-  height: 70vh;
+  height: calc(100vh - 280px);
   padding-top: 50px;
   box-sizing: border-box;
   overflow: hidden;
+  @media (max-width: 768px) {
+    height: calc(100vh - 220px);
+  }
 `;
 
 const CustomToolbarWrap = styled(Box)`
