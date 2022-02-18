@@ -41,7 +41,7 @@ const Table: React.FC<TableProps> = ({ datas }) => {
   useEffect(() => {
     if (datas) {
       setColumns(getColGrid(PRODUCT_CATEGORY));
-      setRows(getRowGrid(datas, columns));
+      setRows(getRowGrid([...datas, ...datas], columns));
       console.log(rows, columns);
     }
   }, [datas]);
@@ -59,12 +59,14 @@ const Table: React.FC<TableProps> = ({ datas }) => {
 
 const TableWrap = styled.section`
   width: calc(100% - 60px);
+  height: 75vh;
   margin: 20px 30px;
   padding: 50px;
   box-sizing: border-box;
   border: 1px solid #dddddd;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
 `;
 
 export default Table;
