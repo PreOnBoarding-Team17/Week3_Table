@@ -1,10 +1,3 @@
-// export interface ProductInterface {
-//   code: string;
-//   name: string;
-//   price: number;
-//   number: number;
-//   relatedCode: string;
-// }
 export interface ProductInterface {
   상품코드?: string;
   상품명?: string;
@@ -12,20 +5,6 @@ export interface ProductInterface {
   상품수량?: number;
   연관상품ID?: string;
 }
-
-// export interface OrderInterface {
-//   code: string;
-//   orderForm: string;
-//   orderName: string;
-//   orderNum: string;
-//   orderUnit: string;
-//   ordererName: string;
-//   ordererPhone: string;
-//   recieverName: string;
-//   recieverPhone: string;
-//   memo: string;
-//   delivery: string;
-// }
 export interface OrderInterface {
   주문서양식?: string;
   주문명?: string;
@@ -39,7 +18,6 @@ export interface OrderInterface {
   메모?: string;
   택배사명?: string;
 }
-
 export interface ReleaseInterface {
   출고코드?: string;
   출고요청일자?: string;
@@ -50,27 +28,7 @@ export interface ReleaseInterface {
   출고유형?: string;
   출고창고명?: string;
 }
-// export interface ReleaseInterface {
-//   code: string;
-//   num?: number;
-//   state?: string;
-//   type?: string;
-//   company?: string;
-//   person?: string;
-//   date?: string;
-//   storage?: string;
-// }
 
-// export interface DataInterface {
-//   dataFrom?: string;
-//   dataFileName?: string;
-//   excelNum?: number;
-//   mappingState?: string;
-//   outOfStock?: string;
-//   product?: ProductInterface;
-//   order?: OrderInterface;
-//   release?: ReleaseInterface;
-// }
 export interface DataInterface {
   데이터출처?: string;
   출고서파일명?: string;
