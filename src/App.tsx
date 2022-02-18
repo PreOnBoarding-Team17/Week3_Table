@@ -3,9 +3,12 @@ import { fetchData } from 'API';
 import { Global } from '@emotion/react';
 import GlobalStyles from 'Utils/Styles/GlobalStyles';
 import NavigationBar from 'Components/Common/NavigationBar';
+import SettingCategory from 'Components/SettingCategory';
 import { INITIAL_CATEGORY } from 'Utils/Constants/';
 import { SelectedInterface, DataInterface } from 'Utils/Interfaces';
-import SelectModal from 'Components/SelectModal';
+import { Box } from '@mui/system';
+import styled from '@emotion/styled';
+import SearchCategory from 'Components/SearchCategory';
 
 function App() {
   const localSelected = localStorage.getItem('selected');
@@ -27,13 +30,36 @@ function App() {
     <div className="App">
       <Global styles={GlobalStyles} />
       <NavigationBar />
-      <SelectModal
-        text="+ 카테고리 설정"
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <Wrapper>
+        <Content>
+          <ContentMenu>
+            <SearchCategory selected={selected} />
+            <SettingCategory selected={selected} setSelected={setSelected} />
+          </ContentMenu>
+          <ContentTable></ContentTable>
+        </Content>
+      </Wrapper>
     </div>
   );
 }
+
+const Wrapper = styled(Box)`
+  padding: 20px 25px;
+`;
+
+const Content = styled(Box)`
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 30px;
+`;
+
+const ContentMenu = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const ContentTable = styled(Box)``;
 
 export default App;

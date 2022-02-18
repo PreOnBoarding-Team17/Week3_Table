@@ -12,17 +12,16 @@ import styled from '@emotion/styled';
 import { SelectedInterface } from 'Utils/Interfaces';
 import useToggle from 'Utils/Hooks/UseToggle';
 
+const BTNTEXT = '+ 카테고리 설정';
 const MODALTITLE = '카테고리 선택해주세요.';
 const MODALBTNTEXT = '선택 완료';
 
-interface CustomModalProps {
-  text: string;
+interface SettingCategoryProps {
   selected: SelectedInterface;
   setSelected: (selectedCategory: SelectedInterface) => void;
 }
 
-const SelectModal: React.FC<CustomModalProps> = ({
-  text,
+const SettingCategory: React.FC<SettingCategoryProps> = ({
   selected,
   setSelected,
 }) => {
@@ -48,7 +47,7 @@ const SelectModal: React.FC<CustomModalProps> = ({
   return (
     <div>
       <Button variant="outlined" color="inherit" onClick={toggleTrue}>
-        {text}
+        {BTNTEXT}
       </Button>
       <Modal open={toggle} onClose={toggleOutSide}>
         <ModalContainer>
@@ -109,4 +108,4 @@ const ModalContent = styled(Box)`
   align-items: center;
 `;
 
-export default SelectModal;
+export default SettingCategory;
