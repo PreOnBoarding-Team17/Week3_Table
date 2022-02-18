@@ -59,13 +59,7 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
 
       compareResult.length + 1 >= rowToArray.length && setModalData(d);
     });
-
-    console.log(modalData);
   }, []);
-
-  useEffect(() => {
-    console.log(modalData);
-  }, [modalData]);
 
   return (
     <Modal open={toggle} onClose={toggleFalse}>
