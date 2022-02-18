@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import {
-  Box,
   Button,
-  Typography,
   Modal,
   FormGroup,
   FormControlLabel,
   Checkbox,
 } from '@mui/material';
-import styled from '@emotion/styled';
+import {
+  ModalContainer,
+  ModalContents,
+  ModalTitle,
+} from 'Utils/Constants/Modal';
 import { SelectedInterface } from 'Utils/Interfaces';
 import useToggle from 'Utils/Hooks/UseToggle';
 import SubmitButton from 'Components/Common/SubmitButton';
@@ -54,7 +56,7 @@ const SettingCategory: React.FC<SettingCategoryProps> = ({
       <Modal open={toggle} onClose={toggleOutSide}>
         <ModalContainer>
           <ModalTitle variant="h6">{MODALTITLE}</ModalTitle>
-          <ModalContent>
+          <ModalContents>
             <FormGroup>
               {Object.entries(copySelected).map(([key, value]) => (
                 <FormControlLabel
@@ -70,7 +72,7 @@ const SettingCategory: React.FC<SettingCategoryProps> = ({
                 />
               ))}
             </FormGroup>
-          </ModalContent>
+          </ModalContents>
           <SubmitButton
             variant="contained"
             text={MODALBTNTEXT}
@@ -81,34 +83,5 @@ const SettingCategory: React.FC<SettingCategoryProps> = ({
     </div>
   );
 };
-
-const ModalContainer = styled(Box)`
-  position: absolute;
-  border-radius: 16px;
-  top: 50%;
-  left: 50%;
-  transition: 0.5s all ease-in;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 600px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px 16px;
-`;
-
-const ModalTitle = styled(Typography)`
-  font-weight: bold;
-`;
-
-const ModalContent = styled(Box)`
-  width: 100%;
-  margin: 36px 0;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export default SettingCategory;

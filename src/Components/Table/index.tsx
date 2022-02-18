@@ -16,12 +16,17 @@ import {
   RowDataInterface,
   SelectedInterface,
 } from 'Utils/Interfaces';
+import CellClickModal from './CellClickModal';
+import useToggle from 'Utils/Hooks/UseToggle';
 
 interface TableProps {
   datas: DataInterface[];
 }
 
 const Table: React.FC<TableProps> = ({ datas }) => {
+  const [toggle, toggleTrue, toggleFalse] = useToggle(false);
+  const [currentRow, setCurrentRow] = useState<any>(null);
+
   const localSelected = localStorage.getItem('selected');
 
   const [selected, setSelected] = useState<SelectedInterface>(
@@ -45,10 +50,10 @@ const Table: React.FC<TableProps> = ({ datas }) => {
 
   useEffect(() => {
     if (datas) {
-      setColumns(getColGrid(PRODUCT_CATEGORY));
-      setRows(getRowGrid([...datas, ...datas], getColGrid(PRODUCT_CATEGORY)));
+      setColumns(getColGrid(selectedTrue));
+      setRows(getRowGrid([...datas, ...datas], getColGrid(selectedTrue)));
     }
-  }, [datas]);
+  }, [datas, selectedTrue]);
 
   const [columns, setColumns] = useState<ColDataInterface[]>([]);
   const [rows, setRows] = useState<RowDataInterface[]>([]);
@@ -63,20 +68,34 @@ const Table: React.FC<TableProps> = ({ datas }) => {
   }, [selected]);
 
   return (
-    <TableWrap>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={rows.length}
-        rowsPerPageOptions={[rows.length]}
-        rowHeight={100}
-        disableExtendRowFullWidth={true}
-        hideFooterPagination
-        components={{
-          Toolbar: CustomToolbar,
-        }}
-      />
-    </TableWrap>
+    <>
+      <TableWrap>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={rows.length}
+          rowsPerPageOptions={[rows.length]}
+          rowHeight={100}
+          onCellClick={(e) => {
+            toggleTrue();
+            setCurrentRow(e.row);
+          }}
+          disableExtendRowFullWidth={true}
+          hideFooterPagination
+          components={{
+            Toolbar: CustomToolbar,
+          }}
+        />
+      </TableWrap>
+      {toggle && (
+        <CellClickModal
+          datas={datas}
+          toggle={toggle}
+          toggleFalse={toggleFalse}
+          row={currentRow}
+        />
+      )}
+    </>
   );
 };
 
