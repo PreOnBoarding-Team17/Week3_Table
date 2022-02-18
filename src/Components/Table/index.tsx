@@ -44,7 +44,7 @@ const Table: React.FC<TableProps> = ({ datas }) => {
   useEffect(() => {
     if (datas) {
       setColumns(getColGrid(selectedTrue));
-      setRows(getRowGrid([...datas, ...datas], getColGrid(selectedTrue)));
+      setRows(getRowGrid([...datas], getColGrid(selectedTrue)));
     }
   }, [datas, selectedTrue]);
 
@@ -70,7 +70,6 @@ const Table: React.FC<TableProps> = ({ datas }) => {
           rowsPerPageOptions={[rows.length]}
           disableExtendRowFullWidth={true}
           hideFooterPagination
-          rowHeight={100}
           onCellClick={(e) => {
             toggleTrue();
             setCurrentRow(e.row);

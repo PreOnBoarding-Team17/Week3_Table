@@ -57,8 +57,6 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
 
       const compareResult = rowToArray.filter((x) => newDataArray.includes(x));
 
-      console.log(compareResult, rowToArray, newDataArray);
-
       compareResult.length === rowToArray.length ||
         (compareResult.length === rowToArray.length - 1 && setModalData(d));
     });
