@@ -65,6 +65,10 @@ const CellClickModal: React.FC<CellClickModalProps> = ({
     console.log(modalData);
   }, []);
 
+  useEffect(() => {
+    console.log(modalData);
+  }, [modalData]);
+
   return (
     <Modal open={toggle} onClose={toggleFalse}>
       <ModalContainer>
