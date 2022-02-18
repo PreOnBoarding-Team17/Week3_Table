@@ -274,7 +274,11 @@ export const getRowGrid = (
       for (let i = 0; i < rowData.length; i++) {
         switch (getLocation(rowData[i].headerName)) {
           case 'product':
-            newData[`col${i + 1}`] = data.상품[rowData[i].headerName];
+            if (rowData[i].headerName === '상품가격')
+              newData[`col${i + 1}`] = Number(
+                data.상품[rowData[i].headerName]
+              ).toLocaleString('en');
+            else newData[`col${i + 1}`] = data.상품[rowData[i].headerName];
             break;
           case 'order':
             newData[`col${i + 1}`] = data.주문[rowData[i].headerName];
