@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "cross-env NODE_PATH=src npm run build",
     "server": "json-server --watch ./server/db.json --port 4000",
-    "dev": "concurrently \"yarn server\" \"yarn star\""
+    "dev": "concurrently \"yarn server\" \"yarn start\""
   },
   "eslintConfig": {
     "extends": [
