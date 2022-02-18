@@ -10,12 +10,17 @@ import {
   RowDataInterface,
   SelectedInterface,
 } from 'Utils/Interfaces';
+import CellClickModal from './CellClickModal';
+import useToggle from 'Utils/Hooks/UseToggle';
 
 interface TableProps {
   datas: DataInterface[];
 }
 
 const Table: React.FC<TableProps> = ({ datas }) => {
+  const [toggle, toggleTrue, toggleFalse] = useToggle(false);
+  const [currentRow, setCurrentRow] = useState<RowDataInterface>({ id: 0 });
+
   const localSelected = localStorage.getItem('selected');
   const [selected, setSelected] = useState<SelectedInterface>(
     localSelected ? JSON.parse(localSelected) : INITIAL_CATEGORY
@@ -56,31 +61,46 @@ const Table: React.FC<TableProps> = ({ datas }) => {
   }, [selected]);
 
   return (
-    <TableWrap>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={rows.length}
-        rowsPerPageOptions={[rows.length]}
-        disableExtendRowFullWidth={true}
-        hideFooterPagination
-        localeText={{
-          toolbarFilters: '카테고리 검색',
-        }}
-        components={{
-          Toolbar: CustomToolbar,
-        }}
-        sx={{
-          border: 'none',
-          borderTop: 2,
-          borderRadius: 0,
-          borderColor: 'black',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
-          },
-        }}
-      />
-    </TableWrap>
+    <>
+      <TableWrap>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={rows.length}
+          rowsPerPageOptions={[rows.length]}
+          disableExtendRowFullWidth={true}
+          hideFooterPagination
+          rowHeight={100}
+          onCellClick={(e) => {
+            toggleTrue();
+            setCurrentRow(e.row);
+          }}
+          localeText={{
+            toolbarFilters: '카테고리 검색',
+          }}
+          components={{
+            Toolbar: CustomToolbar,
+          }}
+          sx={{
+            border: 'none',
+            borderTop: 2,
+            borderRadius: 0,
+            borderColor: 'black',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+          }}
+        />
+      </TableWrap>
+      {toggle && (
+        <CellClickModal
+          datas={datas}
+          toggle={toggle}
+          toggleFalse={toggleFalse}
+          row={currentRow}
+        />
+      )}
+    </>
   );
 };
 
